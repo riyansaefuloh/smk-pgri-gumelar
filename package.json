@@ -23,5 +23,12 @@
     },
     "optionalDependencies": {
         "@laravel/multiplex": "^0.4.1"
+    },
+    "dependencies": {
+        "@idds/react": "^1.6.71",
+        "@tabler/icons-react": "^3.52.0",
+        "@tiptap/react": "^3.35.0",
+        "@tiptap/starter-kit": "^3.35.0",
+        "sweetalert2": "^11.26.25"
     }
 }

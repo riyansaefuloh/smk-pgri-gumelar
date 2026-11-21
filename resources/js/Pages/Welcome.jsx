@@ -1,4 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
+import { Button, Badge } from '@idds/react';
+import { IconCircleCheck } from '@tabler/icons-react';
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
     const handleImageError = () => {
