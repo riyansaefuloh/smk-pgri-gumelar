@@ -14,7 +14,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #1f1f1f;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.005em;
   }
 }
 
@@ -55,11 +55,24 @@
   background-color: #ffffff !important;
 }
 
+/* Fix IDDS Inset Double-Border / Garis Merah di Dalam Box Input */
+.ina-text-field__wrapper--status-error,
+.ina-password-input__wrapper--error {
+  border-color: #dc2626 !important;
+}
+
+.ina-text-field__wrapper--status-error:focus-within,
+.ina-password-input__wrapper--error:focus-within {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15) !important;
+}
+
 .ina-text-field__label,
 .ina-password-input__label {
   font-weight: 500 !important;
-  color: #404040 !important;
-  font-size: 13px !important;
+  color: #333333 !important;
+  font-size: 13.5px !important;
+  letter-spacing: 0.01em !important;
   margin-bottom: 6px !important;
 }
 

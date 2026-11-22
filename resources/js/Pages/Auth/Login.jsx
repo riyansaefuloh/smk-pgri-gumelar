@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, useForm } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { TextField, PasswordInput } from '@idds/react';
+import { IconAlertCircle } from '@tabler/icons-react';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -18,25 +19,49 @@ export default function Login({ status, canResetPassword }) {
         });
     };
 
+    // Deteksi jenis error secara presisi
+    const isCredentialError = Boolean(
+        errors.email && (errors.email.includes('kata sandi') || errors.email.includes('percobaan masuk'))
+    );
+    // Field hanya berstatus merah jika ada kesalahan spesifik pada field tersebut (misal format salah atau belum diisi)
+    // Saat gagal login umum (kredensial salah), fokus pesan cukup ada di alert banner atas tanpa membuat box default merah
+    const emailHasError = Boolean(errors.email && !isCredentialError);
+    const passwordHasError = Boolean(errors.password);
+
     return (
         <GuestLayout>
             <Head title="Masuk Akun Pengelola - Admin CMS" />
 
-            <div className="w-full max-w-[340px] sm:max-w-[360px] mx-auto space-y-7">
-                {/* Header Judul Bersih & Proporsional */}
-                <div className="space-y-2">
-                    <h1 className="text-2xl sm:text-[26px] font-bold text-[#1f1f1f] tracking-tight leading-snug">
+            <div className="w-full max-w-[340px] sm:max-w-[370px] mx-auto space-y-6">
+                {/* Header Judul Bersih, Proporsional & Selaras dengan Sisi Kiri (24px) */}
+                <div className="space-y-1.5">
+                    <h1 className="text-2xl sm:text-[24px] font-bold text-[#1f1f1f] tracking-tight leading-snug">
                         Masuk akun pengelola
                     </h1>
-                    <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
+                    <p className="text-sm text-[#525252] leading-relaxed mt-1">
                         Gunakan alamat email resmi dan kata sandi yang telah didaftarkan sekolah.
                     </p>
                 </div>
 
-                {/* Notifikasi Status */}
+                {/* Notifikasi Status Sesi */}
                 {status && (
-                    <div className="p-3 rounded-md bg-[#edfded] border border-[#bbf7d0] text-xs font-medium text-[#166534]">
+                    <div className="p-3 rounded-xl bg-[#edfded] border border-[#bbf7d0] text-xs font-medium text-[#166534]">
                         {status}
+                    </div>
+                )}
+
+                {/* Alert Pesan Error Kredensial Ramah (Hanya muncul saat kombinasi email/password salah) */}
+                {isCredentialError && (
+                    <div className="p-3.5 rounded-xl bg-[#fef2f2] border border-[#fecaca] flex items-start gap-3 text-xs text-[#991b1b] shadow-xs">
+                        <IconAlertCircle size={19} className="text-[#dc2626] shrink-0 mt-0.5" />
+                        <div className="space-y-0.5">
+                            <p className="font-semibold text-[13px] text-[#991b1b]">
+                                Gagal Masuk ke Akun
+                            </p>
+                            <p className="text-[#7f1d1d] leading-relaxed text-[12px]">
+                                {errors.email}
+                            </p>
+                        </div>
                     </div>
                 )}
 
@@ -49,8 +74,8 @@ export default function Login({ status, canResetPassword }) {
                             value={data.email}
                             onChange={(val) => setData('email', val)}
                             placeholder="nama@smkpgri-gumelar.sch.id"
-                            status={errors.email ? 'error' : 'neutral'}
-                            statusMessage={errors.email}
+                            status={emailHasError ? 'error' : 'neutral'}
+                            statusMessage={!isCredentialError ? errors.email : undefined}
                             disabled={processing}
                         />
                     </div>
@@ -62,7 +87,7 @@ export default function Login({ status, canResetPassword }) {
                             value={data.password}
                             onChange={(val) => setData('password', val)}
                             placeholder="Masukkan kata sandi"
-                            status={errors.password ? 'error' : 'neutral'}
+                            status={passwordHasError ? 'error' : 'neutral'}
                             statusMessage={errors.password}
                             disabled={processing}
                         />
