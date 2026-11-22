@@ -34,6 +34,20 @@ class LoginRequest extends FormRequest
     }
 
     /**
+     * Pesan validasi ramah pengguna dalam Bahasa Indonesia.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Alamat email resmi wajib diisi.',
+            'email.email' => 'Format alamat email tidak valid (contoh: nama@smkpgri-gumelar.sch.id).',
+            'password.required' => 'Kata sandi wajib diisi.',
+        ];
+    }
+
+    /**
      * Attempt to authenticate the request's credentials.
      *
      * @throws ValidationException
@@ -46,7 +60,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => 'Alamat email atau kata sandi yang Anda masukkan tidak sesuai. Silakan periksa kembali kombinasi email dan kata sandi Anda.',
             ]);
         }
 
@@ -69,10 +83,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
+            'email' => "Terlalu banyak percobaan masuk yang gagal. Demi keamanan sistem, silakan tunggu {$seconds} detik sebelum mencoba kembali.",
         ]);
     }
 
