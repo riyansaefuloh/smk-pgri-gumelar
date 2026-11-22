@@ -91,7 +91,7 @@ export default function Navbar() {
                     </div>
                     <div className="flex items-center gap-4">
                         <span>Kecamatan Gumelar, Kabupaten Banyumas</span>
-                        <Link href="/login" className="text-slate-400 hover:text-white transition">
+                        <Link href="/admin/login" className="text-slate-400 hover:text-white transition">
                             Login Admin
                         </Link>
                     </div>
@@ -282,7 +282,7 @@ export default function Navbar() {
                             Daftar SPMB Online
                         </Link>
                         <Link
-                            href="/login"
+                            href="/admin/login"
                             onClick={() => setMobileMenuOpen(false)}
                             className="w-full text-center py-2 text-slate-500 font-semibold text-xs hover:text-slate-800"
                         >
