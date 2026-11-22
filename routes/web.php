@@ -19,9 +19,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 | Dashboard & Profil Pengguna (Breeze)
 |--------------------------------------------------------------------------
 */
-Route::get('/dashboard', function () {
+// Rute Dashboard Resmi: /admin/dashboard
+Route::get('/admin/dashboard', function () {
     return Inertia::render('Admin/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Auto-redirect /dashboard & /admin ke /admin/dashboard
+Route::get('/dashboard', fn() => redirect()->route('dashboard'))->middleware('auth');
+Route::get('/admin', fn() => redirect()->route('dashboard'))->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

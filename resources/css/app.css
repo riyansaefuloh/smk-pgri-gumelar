@@ -1,3 +1,96 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f8f8f7; /* IDDS Neutral-50 */
+    color: #1f1f1f;            /* IDDS Neutral-800 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1f1f1f;
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Custom Scrollbar minimalis IDDS */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4; /* IDDS Neutral-300 */
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3; /* IDDS Neutral-400 */
+}
+
+/* IDDS Form Controls Refinements (Clean White, Crisp 6px Radius) */
+.ina-text-field__wrapper,
+.ina-password-input__wrapper {
+  background-color: #ffffff !important;
+  border-radius: 6px !important;
+  border: 1px solid #e5e5e5 !important;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+}
+
+.ina-text-field__wrapper:hover,
+.ina-password-input__wrapper:hover {
+  border-color: #0968F6 !important;
+}
+
+.ina-text-field__wrapper:focus-within,
+.ina-password-input__wrapper:focus-within {
+  border-color: #0968F6 !important;
+  box-shadow: 0 0 0 1px #0968F6 !important;
+  background-color: #ffffff !important;
+}
+
+.ina-text-field__label,
+.ina-password-input__label {
+  font-weight: 500 !important;
+  color: #404040 !important;
+  font-size: 13px !important;
+  margin-bottom: 6px !important;
+}
+
+/* Hilangkan line biru dalam (browser default focus outline) */
+.ina-text-field__input,
+.ina-password-input__input,
+.ina-text-field__input:focus,
+.ina-password-input__input:focus,
+.ina-text-field__input:active,
+.ina-password-input__input:active {
+  font-weight: 400 !important;
+  color: #1f1f1f !important;
+  font-size: 14px !important;
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Inertia Page Loading Progress Bar (Gov Blue #0968F6) */
+#nprogress .bar {
+  background: #0968F6 !important;
+  height: 3px !important;
+  z-index: 99999 !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #0968F6, 0 0 5px #0968F6 !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #0968F6 !important;
+  border-left-color: #0968F6 !important;
+}

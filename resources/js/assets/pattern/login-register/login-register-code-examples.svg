@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none" className="w-full h-auto">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFF6FF" />
+      <stop offset="100%" stop-color="#DBEAFE" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0968F6" />
+      <stop offset="100%" stop-color="#0755CA" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0968F6" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background decorative shapes -->
+  <circle cx="200" cy="120" r="100" fill="url(#bgGrad)" opacity="0.6" />
+  <circle cx="90" cy="60" r="28" fill="#ECF3FE" />
+  <circle cx="310" cy="170" r="22" fill="#ECF3FE" />
+  <rect x="70" y="160" width="16" height="16" rx="4" fill="#DCEAFE" transform="rotate(25 70 160)" />
+  <rect x="320" y="70" width="14" height="14" rx="3" fill="#DCEAFE" transform="rotate(-15 320 70)" />
+
+  <!-- Main Card Illustration -->
+  <g filter="url(#cardShadow)">
+    <rect x="110" y="45" width="180" height="150" rx="16" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="1.5" />
+    
+    <!-- Card Header / Window Bar -->
+    <rect x="110" y="45" width="180" height="28" rx="16" fill="#F8F8F7" />
+    <rect x="110" y="60" width="180" height="13" fill="#F8F8F7" />
+    <line x1="110" y1="73" x2="290" y2="73" stroke="#E5E5E5" stroke-width="1" />
+    
+    <!-- Window Dots -->
+    <circle cx="126" cy="59" r="3.5" fill="#EF4444" opacity="0.8" />
+    <circle cx="136" cy="59" r="3.5" fill="#F59E0B" opacity="0.8" />
+    <circle cx="146" cy="59" r="3.5" fill="#10B981" opacity="0.8" />
+    
+    <!-- Central Shield & Key Symbol -->
+    <circle cx="200" cy="115" r="26" fill="#ECF3FE" />
+    <path d="M200 97 C190 97, 185 103, 185 113 C185 125, 200 135, 200 135 C200 135, 215 125, 215 113 C215 103, 210 97, 200 97 Z" fill="url(#blueGrad)" />
+    <!-- Checkmark inside shield -->
+    <path d="M195 114 L198.5 117.5 L205.5 110.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Input Skeleton Lines -->
+    <rect x="135" y="152" width="130" height="10" rx="5" fill="#F1F5F9" />
+    <rect x="155" y="170" width="90" height="10" rx="5" fill="url(#blueGrad)" opacity="0.9" />
+  </g>
+
+  <!-- Accent Float Badge -->
+  <g filter="url(#cardShadow)">
+    <rect x="250" y="90" width="65" height="26" rx="8" fill="#FFFFFF" stroke="#DCEAFE" stroke-width="1" />
+    <circle cx="262" cy="103" r="4" fill="#10B981" />
+    <text x="272" y="107" font-family="sans-serif" font-size="9" font-weight="bold" fill="#0968F6">SMK PGRI</text>
+  </g>
+</svg>
