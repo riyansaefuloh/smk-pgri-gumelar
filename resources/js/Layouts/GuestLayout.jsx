@@ -4,11 +4,11 @@ import { IconArrowLeft } from '@tabler/icons-react';
 
 export default function GuestLayout({ children }) {
     return (
-        <div className="fixed inset-0 w-full h-full flex flex-col lg:flex-row font-inter antialiased selection:bg-[#ecf3fe] selection:text-[#0968f6] bg-[#f8f8f7] overflow-y-auto lg:overflow-hidden select-none">
+        <div className="fixed inset-0 w-full h-full flex flex-col lg:flex-row font-inter antialiased selection:bg-[#ecf3fe] selection:text-[#0968f6] bg-[#f2f4f7] overflow-y-auto lg:overflow-hidden select-none">
             {/* ========================================================================= */}
             {/* 1. SISI KIRI: BRANDING & HERO STAGE (Proporsi 60% - Megah, Kokoh & Tegak)  */}
             {/* ========================================================================= */}
-            <div className="relative hidden lg:flex lg:w-[60%] h-full bg-[#f8f8f7] text-[#1f1f1f] flex-col justify-between p-10 xl:p-14 overflow-hidden">
+            <div className="relative hidden lg:flex lg:w-[60%] h-full bg-[#f2f4f7] text-[#1f1f1f] flex-col justify-between p-10 xl:p-14 overflow-hidden">
                 {/* Header Kiri: Logo Resmi SMK PGRI Gumelar */}
                 <div className="relative z-10 flex items-center gap-3">
                     <img
@@ -59,7 +59,7 @@ export default function GuestLayout({ children }) {
             {/* ========================================================================= */}
             {/* 2. SISI KANAN: SLIDE LOGIN (Proporsi 40% - Putih Bersih Alami)             */}
             {/* ========================================================================= */}
-            <div className="w-full lg:w-[40%] shrink-0 h-full bg-white flex flex-col justify-between px-8 sm:px-12 xl:px-16 py-6 sm:py-8 relative z-20 overflow-y-auto lg:overflow-hidden">
+            <div className="w-full lg:w-[40%] shrink-0 h-full bg-white flex flex-col justify-between px-8 sm:px-12 xl:px-16 py-6 sm:py-8 relative z-20 overflow-y-auto lg:overflow-hidden border-l border-[#eaecf0]">
                 {/* Header Kanan / Link Kembali */}
                 <div className="flex items-center justify-between w-full">
                     <Link href="/" className="flex items-center gap-2.5 group lg:hidden">

@@ -46,12 +46,15 @@ export default {
                 // Token Semantik Latar Belakang (Surface / Background)
                 surface: {
                     primary: '#ffffff',   // Neutral-25: Kartu & Modal
-                    secondary: '#f8f8f7', // Neutral-50: Kanvas Layar
+                    secondary: '#f2f4f7', // Neutral-100: Kanvas Layar (Cool Neutral Muted)
                     tertiary: '#f2f2f2',  // Neutral-100: Hover Elemen
                 },
-                // Token Semantik Garis Batas (Stroke / Border)
+                // Token Semantik Garis Batas (Dual-Stroke & Input High-Affordance)
                 stroke: {
-                    primary: '#e5e5e5',   // Neutral-200: Border Standar
+                    shell: '#eaecf0',     // Pembatas Struktur (Sidebar, Topbar, Divider Sisi)
+                    card: '#e2e8f0',      // Pembatas Elemen Konten (Kartu KPI, Kontainer Modul, Tabel)
+                    input: '#d0d5dd',     // Pembatas Elemen Input & Kontrol Interaktif (Tegas & High-Affordance)
+                    primary: '#e2e8f0',   // Border Standar Antarmuka
                     secondary: '#a3a3a3', // Neutral-400: Border Fokus
                     tertiary: '#1f1f1f',  // Neutral-800: Border Tegas
                 },
@@ -85,10 +88,10 @@ export default {
                     hover: '#0049b8',
                     active: '#002a69',
                     light: '#ecf3fe',
-                    bg: '#f8f8f7',
+                    bg: '#f2f4f7',
                     sidebar: '#ffffff',
-                    border: '#e5e5e5',
-                    borderLight: '#e5e5e5',
+                    border: '#eaecf0',
+                    borderLight: '#eaecf0',
                     textDark: '#1f1f1f',
                     textMuted: '#525252',
                 },

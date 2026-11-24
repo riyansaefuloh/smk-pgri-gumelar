@@ -5,7 +5,7 @@
 @layer base {
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #f8f8f7; /* IDDS Neutral-50 */
+    background-color: #f2f4f7; /* Cool Neutral Muted Background */
     color: #1f1f1f;            /* IDDS Neutral-800 */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -34,13 +34,13 @@
   background: #a3a3a3; /* IDDS Neutral-400 */
 }
 
-/* IDDS Form Controls Refinements (Clean White, Crisp 6px Radius) */
+/* IDDS Form Controls Refinements (Clean White, Crisp 6px Radius, High-Affordance #d0d5dd Stroke & Micro-Shadow) */
 div.ina-text-field__wrapper,
 div.ina-password-input__wrapper {
   background-color: #ffffff !important;
   border-radius: 6px !important;
-  border: 1px solid #e5e5e5 !important;
-  box-shadow: none !important;
+  border: 1px solid #d0d5dd !important;
+  box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05) !important;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
 }
 
@@ -54,7 +54,7 @@ div.ina-password-input__wrapper:focus-within,
 div.ina-password-input__wrapper.ina-password-input__wrapper--neutral:focus-within,
 div.ina-text-field__wrapper.ina-text-field__wrapper--status-neutral:focus-within {
   border-color: #0968F6 !important;
-  box-shadow: 0 0 0 1px #0968F6 !important;
+  box-shadow: 0 0 0 3px rgba(9, 104, 246, 0.15) !important;
   background-color: #ffffff !important;
 }
 

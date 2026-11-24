@@ -21,7 +21,7 @@ export default function AdminTopbar({ title = 'Dashboard', user, onToggleSidebar
     const userRole = 'Admin';
 
     return (
-        <header className="h-16 bg-white border-b border-[#e5e5e5] px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-30 shrink-0 font-sans">
+        <header className="h-16 bg-white border-b border-[#eaecf0] px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-30 shrink-0 font-sans">
             {/* Sisi Kiri: Toggle Drawer Mobile & Breadcrumb Kontekstual IDDS */}
             <div className="flex items-center gap-3">
                 <button
@@ -49,7 +49,7 @@ export default function AdminTopbar({ title = 'Dashboard', user, onToggleSidebar
                     href="/"
                     target="_blank"
                     rel="noreferrer"
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-inter font-medium text-[#525252] bg-white hover:bg-[#ecf3fe] hover:text-[#0968f6] border border-[#e5e5e5] shadow-xs transition"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-inter font-medium text-[#525252] bg-white hover:bg-[#ecf3fe] hover:text-[#0968f6] border border-[#e2e8f0] shadow-xs transition"
                 >
                     <IconExternalLink size={14} />
                     <span>Website Publik</span>
@@ -65,7 +65,7 @@ export default function AdminTopbar({ title = 'Dashboard', user, onToggleSidebar
                     <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#d50b0b] ring-2 ring-white" />
                 </button>
 
-                <div className="h-5 w-px bg-[#e5e5e5] hidden sm:block" />
+                <div className="h-5 w-px bg-[#eaecf0] hidden sm:block" />
 
                 {/* Profil Pengguna Dropdown (Menggunakan Aset Komponen React Asli / SVG Icon Tanpa File Gambar) */}
                 <div className="relative">
@@ -98,8 +98,8 @@ export default function AdminTopbar({ title = 'Dashboard', user, onToggleSidebar
 
                     {/* Dropdown Menu Pengguna */}
                     {dropdownOpen && (
-                        <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-[#e5e5e5] py-2 z-50 text-xs animate-in fade-in slide-in-from-top-1">
-                            <div className="px-3.5 py-2 border-b border-[#e5e5e5] md:hidden">
+                        <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-[#eaecf0] py-2 z-50 text-xs animate-in fade-in slide-in-from-top-1">
+                            <div className="px-3.5 py-2 border-b border-[#eaecf0] md:hidden">
                                 <p className="font-bold text-[#1f1f1f] text-[13px]">{userName}</p>
                                 <p className="text-[#737373] text-[11px]">{userRole}</p>
                             </div>
@@ -123,7 +123,7 @@ export default function AdminTopbar({ title = 'Dashboard', user, onToggleSidebar
                                 <span>Kelola Profil Akun</span>
                             </Link>
 
-                            <div className="my-1 border-t border-[#e5e5e5]" />
+                            <div className="my-1 border-t border-[#eaecf0]" />
 
                             <button
                                 type="button"

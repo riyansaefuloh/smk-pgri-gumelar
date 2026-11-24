@@ -16,9 +16,9 @@ export default function ModuleScaffold({ title, category, description, migration
             title={title}
             subtitle={description || `Kelola data dan konten untuk sub-menu ${title}.`}
         >
-            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-6 sm:p-8 space-y-6 shadow-xs">
+            <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 sm:p-8 space-y-6 shadow-xs">
                 {/* Header status bar */}
-                <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#e5e5e5]">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#e2e8f0]">
                     <div className="flex items-center gap-2.5">
                         <span className="px-3 py-1 rounded-md text-xs font-semibold bg-[#ecf3fe] text-[#0968f6]">
                             {category || 'Modul Layanan'}
@@ -75,8 +75,8 @@ export default function ModuleScaffold({ title, category, description, migration
                 </div>
 
                 {/* Kartu Status Sub-Menu / Database */}
-                <div className="p-5 rounded-xl border border-dashed border-[#e5e5e5] bg-[#f8f8f7] flex items-start sm:items-center gap-3.5">
-                    <div className={`w-10 h-10 rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center shrink-0 shadow-2xs ${
+                <div className="p-5 rounded-xl border border-dashed border-[#e2e8f0] bg-[#f2f4f7] flex items-start sm:items-center gap-3.5">
+                    <div className={`w-10 h-10 rounded-xl bg-white border border-[#e2e8f0] flex items-center justify-center shrink-0 shadow-2xs ${
                         migrationStatus ? 'text-[#d97706]' : 'text-[#0968f6]'
                     }`}>
                         {migrationStatus ? (
@@ -101,7 +101,7 @@ export default function ModuleScaffold({ title, category, description, migration
                 <div className="pt-2">
                     <Link
                         href="/dashboard"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-[#525252] bg-white hover:bg-[#ecf3fe] hover:text-[#0968f6] border border-[#e5e5e5] transition shadow-xs"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-[#525252] bg-white hover:bg-[#ecf3fe] hover:text-[#0968f6] border border-[#e2e8f0] transition shadow-xs"
                     >
                         <IconArrowLeft size={16} />
                         <span>Kembali ke Dashboard</span>
