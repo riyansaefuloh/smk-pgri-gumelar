@@ -39,7 +39,7 @@ export default function AdminLayout({
     }, [flash]);
 
     return (
-        <div className="min-h-screen flex bg-[#f8f8f7] text-[#1f1f1f] antialiased font-sans">
+        <div className="min-h-screen flex bg-[#f2f4f7] text-[#1f1f1f] antialiased font-sans">
             <Head>
                 <title>{title ? `${title} - Admin CMS SMK PGRI Gumelar` : 'Admin CMS SMK PGRI Gumelar'}</title>
             </Head>

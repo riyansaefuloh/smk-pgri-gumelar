@@ -8,8 +8,8 @@ export default function Beranda({ title, beranda }) {
     return (
         <AdminLayout title={title || 'Kelola Beranda'}>
             <div className="space-y-6">
-                <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
-                    <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
+                <div className="bg-white rounded-2xl p-6 border border-[#e2e8f0] shadow-xs">
+                    <div className="flex items-center gap-3 pb-4 border-b border-[#e2e8f0]">
                         <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
                             <IconHome size={22} />
                         </div>
@@ -24,7 +24,7 @@ export default function Beranda({ title, beranda }) {
                     </div>
 
                     <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
-                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-150 space-y-2">
+                        <div className="p-4 rounded-xl bg-white border border-[#e2e8f0] space-y-2">
                             <span className="font-bold text-slate-500 uppercase tracking-wider block text-[10px]">
                                 Judul Hero Banner:
                             </span>
@@ -39,7 +39,7 @@ export default function Beranda({ title, beranda }) {
                             </p>
                         </div>
 
-                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-150 space-y-2">
+                        <div className="p-4 rounded-xl bg-white border border-[#e2e8f0] space-y-2">
                             <span className="font-bold text-slate-500 uppercase tracking-wider block text-[10px]">
                                 Nama Kepala Sekolah:
                             </span>
@@ -55,7 +55,7 @@ export default function Beranda({ title, beranda }) {
                         </div>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <div className="mt-6 pt-4 border-t border-[#e2e8f0] flex items-center justify-between text-xs text-slate-500">
                         <span className="inline-flex items-center gap-1.5 text-emerald-600 font-semibold">
                             <IconCheck size={16} /> Status: Data Seeder Aktif
                         </span>

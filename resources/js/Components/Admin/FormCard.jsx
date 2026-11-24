@@ -18,10 +18,10 @@ export default function FormCard({
     extraActions,
 }) {
     return (
-        <div className="bg-white rounded-xl border border-[#e5e5e5] shadow-xs overflow-hidden">
+        <div className="bg-white rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
             {/* Header Form */}
             {(title || backUrl) && (
-                <div className="p-4 sm:p-5 border-b border-[#e5e5e5] flex items-center justify-between gap-4">
+                <div className="p-4 sm:p-5 border-b border-[#e2e8f0] flex items-center justify-between gap-4">
                     <div className="flex items-center gap-2.5">
                         {backUrl && (
                             <Link
@@ -34,12 +34,12 @@ export default function FormCard({
                         )}
                         <div>
                             {title && (
-                                <h2 className="text-sm sm:text-base font-bold text-[#1f1f1f] font-poppins">
+                                <h2 className="text-sm sm:text-base font-bold text-[#1f1f1f]">
                                     {title}
                                 </h2>
                             )}
                             {description && (
-                                <p className="text-xs text-[#525252] mt-0.5 font-inter">{description}</p>
+                                <p className="text-xs text-[#525252] mt-0.5">{description}</p>
                             )}
                         </div>
                     </div>
@@ -59,11 +59,11 @@ export default function FormCard({
                 </div>
 
                 {/* Bottom Actions Bar */}
-                <div className="p-4 sm:p-5 border-t border-[#e5e5e5] bg-[#f8f8f7]/60 flex items-center justify-end gap-2.5 font-inter">
+                <div className="p-4 sm:p-5 border-t border-[#e2e8f0] bg-[#f2f4f7]/60 flex items-center justify-end gap-2.5 font-inter">
                     {backUrl && (
                         <Link
                             href={backUrl}
-                            className="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f2f2f2] border border-[#e5e5e5] transition"
+                            className="px-3.5 py-2 rounded-lg text-xs font-semibold text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f2f2f2] border border-[#e2e8f0] transition"
                         >
                             {cancelLabel}
                         </Link>

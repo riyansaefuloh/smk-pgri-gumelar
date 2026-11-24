@@ -116,7 +116,7 @@ export default function Dashboard() {
 
     // Header Action Real: Indikator Tahun Ajaran Resmi (Tanpa tombol artifisial yang tidak diperlukan)
     const headerActions = (
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-[#e5e5e5] text-xs text-[#525252] shadow-xs">
+        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-[#e2e8f0] text-xs text-[#525252] shadow-xs">
             <IconCalendar size={14} className="text-[#0968f6]" />
             <span className="font-medium">Tahun Ajaran 2026/2027</span>
         </div>
@@ -129,7 +129,7 @@ export default function Dashboard() {
             headerActions={headerActions}
         >
             <div className="space-y-6">
-                {/* 1. Baris 4 Kartu Metrik KPI (Pola IDDS Card Data: Ringkas, Bersih, Tidak Ramai) */}
+                {/* 1. Baris 4 Kartu Metrik KPI (Pola IDDS Card Data: Stroke Ideal Slate-200 #e2e8f0) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {metrics.map((metric, idx) => {
                         const MetricIcon = metric.icon;
@@ -137,7 +137,7 @@ export default function Dashboard() {
                             <Link
                                 key={idx}
                                 href={metric.href}
-                                className="bg-white rounded-2xl border border-[#e5e5e5] p-6 hover:border-[#0968f6] hover:shadow-xs transition-all group flex flex-col justify-between space-y-3"
+                                className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-xs hover:border-[#0968f6] hover:shadow-sm hover:-translate-y-0.5 transition-all group flex flex-col justify-between space-y-3"
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="text-xs font-medium text-[#525252]">
@@ -171,10 +171,10 @@ export default function Dashboard() {
                     })}
                 </div>
 
-                {/* 2. Kontainer Kartu Utama: 6 Modul Layanan Terintegrasi (Sesuai Kebutuhan Real) */}
-                <div className="bg-white rounded-2xl border border-[#e5e5e5] p-6 sm:p-8 shadow-xs space-y-6">
+                {/* 2. Kontainer Kartu Utama: 6 Modul Layanan Terintegrasi (Border Ideal Slate-200 #e2e8f0) */}
+                <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 sm:p-8 shadow-xs space-y-6">
                     {/* Header Bagian Modul */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#e5e5e5]">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#e2e8f0]">
                         <div>
                             <h3 className="font-bold text-sm text-[#1f1f1f] uppercase tracking-wider">
                                 Modul Layanan Terintegrasi
@@ -193,7 +193,7 @@ export default function Dashboard() {
                                 <Link
                                     key={idx}
                                     href={item.href}
-                                    className="p-5 sm:p-6 rounded-xl border border-[#e5e5e5] hover:border-[#0968f6] hover:bg-[#fafcff] transition group flex flex-col justify-between space-y-4"
+                                    className="p-5 sm:p-6 rounded-xl border border-[#d0d5dd] bg-white shadow-xs hover:bg-[#fafcff] hover:border-[#0968f6] hover:shadow-md hover:-translate-y-0.5 transition-all group flex flex-col justify-between space-y-4"
                                 >
                                     <div className="space-y-3">
                                         <div className="flex items-center justify-between">
@@ -213,7 +213,7 @@ export default function Dashboard() {
                                         </p>
                                     </div>
 
-                                    <div className="pt-3 border-t border-[#e5e5e5] flex items-center justify-between text-xs text-[#525252]">
+                                    <div className="pt-3 border-t border-[#e2e8f0] flex items-center justify-between text-xs text-[#525252]">
                                         <span>Status: <strong className="text-[#1f1f1f] font-medium">{item.count}</strong></span>
                                         <span className="text-[#0968f6] font-medium group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1 text-[11.5px]">
                                             Buka Modul <IconArrowRight size={13} />

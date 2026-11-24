@@ -62,7 +62,7 @@ export default function AdminSidebar({
             subItems: [
                 { label: 'Pengaturan Halaman', href: '/admin/spmb-halaman' },
                 { label: 'Jadwal Gelombang', href: '/admin/spmb-gelombang' },
-                { label: 'Data Pendaftar Siswa', href: '/admin/spmb-pendaftar', highlight: true },
+                { label: 'Data Pendaftar Siswa', href: '/admin/spmb-pendaftar' },
             ],
         },
         {
@@ -103,7 +103,7 @@ export default function AdminSidebar({
             icon: IconUserSearch,
             subItems: [
                 { label: 'Kode Alumni', href: '/admin/kode-alumni' },
-                { label: 'Respon & Testimoni', href: '/admin/alumni-tracer', highlight: true },
+                { label: 'Respon & Testimoni', href: '/admin/alumni-tracer' },
             ],
         },
     ];
@@ -123,7 +123,7 @@ export default function AdminSidebar({
 
             {/* Sidebar Element (Lebar Proporsional 240px, atau Compact 68px saat Collapsed) */}
             <aside
-                className={`fixed top-0 bottom-0 left-0 z-50 bg-white border-r border-[#e5e5e5] flex flex-col transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
+                className={`fixed top-0 bottom-0 left-0 z-50 bg-white border-r border-[#eaecf0] flex flex-col transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
                     isOpen ? 'translate-x-0' : '-translate-x-full'
                 } ${isCollapsed ? 'w-[68px]' : 'w-[240px]'}`}
             >
@@ -195,7 +195,7 @@ export default function AdminSidebar({
 
                 {/* Garis Pembatas Inset Halus */}
                 <div className={isCollapsed ? 'w-10 mx-auto' : 'px-4'}>
-                    <div className="h-px bg-[#e5e5e5] w-full" />
+                    <div className="h-px bg-[#eaecf0] w-full" />
                 </div>
 
                 {/* Navigasi Menu: Semua Ikon Terpusat Presisi & Sejajar */}
@@ -218,7 +218,7 @@ export default function AdminSidebar({
                             } ${
                                 isDashboardActive
                                     ? 'bg-[#ecf3fe] text-[#0968f6] font-semibold shadow-xs'
-                                    : 'text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f8f7] font-medium'
+                                    : 'text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f9fa] font-medium'
                             }`}
                         >
                             <IconHome
@@ -256,7 +256,7 @@ export default function AdminSidebar({
                                         } ${
                                             hasActiveChild && !isExpanded
                                                 ? 'bg-[#ecf3fe] text-[#0968f6] font-semibold'
-                                                : 'text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f8f7] font-medium'
+                                                : 'text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f9fa] font-medium'
                                         }`}
                                     >
                                         {isCollapsed ? (
@@ -290,7 +290,7 @@ export default function AdminSidebar({
 
                                     {/* Sub-item Dropdown (hanya tampil saat expanded dan sidebar tidak collapsed) */}
                                     {isExpanded && !isCollapsed && (
-                                        <div className="pl-3.5 pr-1 py-1 space-y-1 border-l border-[#e5e5e5] ml-4">
+                                        <div className="pl-3.5 pr-1 py-1 space-y-1 border-l border-[#eaecf0] ml-4">
                                             {group.subItems.map((sub, sIdx) => {
                                                 const active = isCurrent(sub.href);
                                                 return (
@@ -300,7 +300,7 @@ export default function AdminSidebar({
                                                         className={`flex items-center justify-between px-2.5 h-8 rounded-lg text-[12.5px] font-inter transition-all group/sub ${
                                                             active
                                                                 ? 'bg-[#ecf3fe] text-[#0968f6] font-semibold'
-                                                                : 'text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f8f7] font-normal'
+                                                                : 'text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f9fa] font-normal'
                                                         }`}
                                                     >
                                                         <div className="flex items-center gap-2.5 truncate">
@@ -313,9 +313,6 @@ export default function AdminSidebar({
                                                             />
                                                             <span className="truncate">{sub.label}</span>
                                                         </div>
-                                                        {sub.highlight && !active && (
-                                                            <span className="w-1.5 h-1.5 rounded-full bg-[#eebb04] shrink-0 ml-1.5" />
-                                                        )}
                                                     </Link>
                                                 );
                                             })}
@@ -326,8 +323,8 @@ export default function AdminSidebar({
                         })}
                     </div>
 
-                    {/* 3. SEKSI DUKUNGAN SISTEM */}
-                    <div className="space-y-1.5 pt-2 border-t border-[#f2f2f2]">
+                    {/* 3. SEKSI DUKUNGAN SISTEM (Tanpa Garis Pembatas Atas) */}
+                    <div className="space-y-1.5 pt-2">
                         {!isCollapsed && (
                             <p className="px-3 text-[10.5px] font-semibold text-[#737373] uppercase tracking-wider font-inter">
                                 DUKUNGAN
@@ -347,7 +344,7 @@ export default function AdminSidebar({
                                     confirmButtonColor: '#0968f6',
                                 });
                             }}
-                            className={`flex items-center h-10 rounded-xl text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f8f7] transition-all text-[13px] font-inter font-medium ${
+                            className={`flex items-center h-10 rounded-xl text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f8f9fa] transition-all text-[13px] font-inter font-medium ${
                                 isCollapsed
                                     ? 'w-10 h-10 mx-auto justify-center'
                                     : 'w-full px-3 gap-3'
