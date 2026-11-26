@@ -6,9 +6,14 @@
 
         <title inertia>{{ config('app.name', 'SMK PGRI Gumelar') }}</title>
 
-        <!-- Google Fonts via Bunny Fonts: Inter Tunggal Resmi IDDS (400, 500, 600, 700) -->
+        <!-- Google Fonts via Bunny Fonts: Inter Tunggal Resmi IDDS (CMS) -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800&display=swap" rel="stylesheet" />
+
+        <!-- Google Fonts: Tipografi Resmi Website Publik -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @routes

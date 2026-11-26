@@ -12,10 +12,14 @@ export default {
 
     theme: {
         extend: {
-            // Standar IDDS: Inter sebagai font tunggal ekosistem
+            // Standar IDDS (CMS): Inter; Website Publik: Plus Jakarta Sans, Poppins, Intel One Mono, Libre Baskerville
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
                 inter: ['Inter', 'sans-serif'],
+                heading: ['"Plus Jakarta Sans"', ...defaultTheme.fontFamily.sans],
+                body: ['Poppins', ...defaultTheme.fontFamily.sans],
+                badge: ['"Intel One Mono"', ...defaultTheme.fontFamily.mono],
+                number: ['"Libre Baskerville"', ...defaultTheme.fontFamily.serif],
             },
             colors: {
                 // Token Gov Blue Resmi IDDS (Primary Brand Color)
@@ -94,6 +98,15 @@ export default {
                     borderLight: '#eaecf0',
                     textDark: '#1f1f1f',
                     textMuted: '#525252',
+                },
+                // Token Warna Khusus Website Publik
+                pub: {
+                    primary: '#4F6DF5',       // Biru Aksen Utama (Tombol Pill, Highlight Judul, Ikon)
+                    hover: '#3B5BDB',         // Hover Tombol Utama Publik
+                    soft: '#EEF2FF',          // Latar Ikon Bulat & Badge Lembut
+                    surface: '#FFFFFF',       // Latar Utama Halaman Dalam
+                    muted: '#F8FAFC',         // Latar Seksi Alternatif
+                    dark: '#0F172A',          // Latar Footer / Overlay Gelap
                 },
             },
             boxShadow: {

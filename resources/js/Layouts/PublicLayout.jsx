@@ -3,23 +3,30 @@ import { Head } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
 
-export default function PublicLayout({ children, title = 'SMK PGRI Gumelar' }) {
+export default function PublicLayout({
+    children,
+    title = 'SMK PGRI Gumelar',
+    transparentNavbar = false,
+}) {
     return (
-        <div className="min-h-screen flex flex-col bg-slate-50 text-slate-850 antialiased font-sans selection:bg-blue-600 selection:text-white">
+        <div className="min-h-screen flex flex-col bg-pub-surface text-content-primary antialiased font-body selection:bg-pub-primary selection:text-white">
             <Head>
-                <title>{title ? `${title} - SMK PGRI Gumelar` : 'SMK PGRI Gumelar - Layanan & Branding'}</title>
-                <meta name="description" content="Website resmi SMK PGRI Gumelar Banyumas. Pusat informasi PPDB/SPMB, program keahlian TBSM, Teaching Factory, bursa kerja, dan tracer study." />
+                <title>{title ? `${title} - SMK PGRI Gumelar` : 'SMK PGRI Gumelar'}</title>
+                <meta
+                    name="description"
+                    content="Website resmi SMK PGRI Gumelar Banyumas. Pusat informasi SPMB/PPDB, program keahlian, Teaching Factory, bursa kerja, dan tracer study."
+                />
             </Head>
 
-            {/* 1. Header & Navigasi */}
-            <Navbar />
+            {/* Header & Navigasi */}
+            <Navbar transparent={transparentNavbar} />
 
-            {/* 2. Konten Dinamis Halaman Publik */}
+            {/* Konten Dinamis Halaman Publik */}
             <main className="flex-grow">
                 {children}
             </main>
 
-            {/* 3. Footer Sekolah */}
+            {/* Footer Sekolah */}
             <Footer />
         </div>
     );
