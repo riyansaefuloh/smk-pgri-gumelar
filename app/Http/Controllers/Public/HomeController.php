@@ -40,7 +40,12 @@ class HomeController extends Controller
         $jurusan = ProgramKeahlian::orderBy('urutan_tampil')->get();
         $beritaTerbaru = Berita::with('kategori')->orderBy('id', 'desc')->take(3)->get();
         $kalenderMendatang = KalenderAkademik::with('kategori')->orderBy('tanggal_kegiatan', 'asc')->take(3)->get();
-        $karyaTerbaru = TefaKarya::with('kategori')->orderBy('id', 'desc')->take(3)->get();
+        $karyaTerbaru = TefaKarya::with('kategoriKarya')
+            ->where('status_publikasi', true)
+            ->orderBy('urutan_tampil')
+            ->orderBy('id', 'desc')
+            ->take(3)
+            ->get();
 
         return Inertia::render('Public/Beranda', [
             'beranda'           => $beranda,
@@ -176,7 +181,11 @@ class HomeController extends Controller
     public function karya()
     {
         return Inertia::render('Public/Karya/Index', [
-            'karyas'    => TefaKarya::with('kategori')->orderBy('id', 'desc')->get(),
+            'karyas'    => TefaKarya::with('kategoriKarya')
+                ->where('status_publikasi', true)
+                ->orderBy('urutan_tampil')
+                ->orderBy('id', 'desc')
+                ->get(),
             'kategoris' => KategoriKarya::all(),
             'header'    => HalamanHeader::where('kode_halaman', 'karya')->first(),
         ]);

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\TefaBengkelController;
+use App\Http\Controllers\Admin\TefaKaryaController;
+use App\Models\Beranda;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Models\Beranda;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,19 +120,24 @@ Route::get('/kategori-berita', fn() => redirect()->route('berita'));
 Route::get('/kategori-kegiatan', fn() => redirect()->route('kalender-akademik'));
 
 // 6. TEFA & Karya Siswa
-Route::get('/tefa-bengkel', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Profil Bengkel TEFA',
-    'category'    => '6. TEFA & Karya Siswa',
-    'description' => 'Kelola profil bengkel motor Teaching Factory, layanan servis, dan jam operasional.',
-]))->name('tefa-bengkel');
+Route::get('/tefa-bengkel', [TefaBengkelController::class, 'index'])->name('tefa-bengkel');
+Route::put('/tefa-bengkel', [TefaBengkelController::class, 'update'])->name('tefa-bengkel.update');
+Route::put('/tefa-bengkel/header', [TefaBengkelController::class, 'updateHeader'])->name('tefa-bengkel.header.update');
+Route::put('/tefa-bengkel/profil', [TefaBengkelController::class, 'updateProfil'])->name('tefa-bengkel.profil.update');
+Route::put('/tefa-bengkel/layanan', [TefaBengkelController::class, 'updateLayanan'])->name('tefa-bengkel.layanan.update');
 
-Route::get('/tefa-karya', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Karya & Inovasi',
-    'category'    => '6. TEFA & Karya Siswa',
-    'description' => 'Kelola etalase karya inovatif siswa, deskripsi produk inovasi, dan dokumentasi.',
-]))->name('tefa-karya');
+Route::get('/tefa-karya', [TefaKaryaController::class, 'index'])->name('tefa-karya');
+Route::put('/tefa-karya/header', [TefaKaryaController::class, 'updateHeader'])->name('tefa-karya.header.update');
+Route::post('/tefa-karya', [TefaKaryaController::class, 'store'])->name('tefa-karya.store');
+Route::put('/tefa-karya/{karya}', [TefaKaryaController::class, 'update'])->name('tefa-karya.update');
+Route::delete('/tefa-karya/{karya}', [TefaKaryaController::class, 'destroy'])->name('tefa-karya.destroy');
+Route::patch('/tefa-karya/{karya}/toggle', [TefaKaryaController::class, 'toggleStatus'])->name('tefa-karya.toggle');
 
-Route::get('/kategori-karya', fn() => redirect()->route('tefa-karya'));
+Route::post('/tefa-karya/kategori', [TefaKaryaController::class, 'storeKategori'])->name('tefa-karya.kategori.store');
+Route::put('/tefa-karya/kategori/{kategori}', [TefaKaryaController::class, 'updateKategori'])->name('tefa-karya.kategori.update');
+Route::delete('/tefa-karya/kategori/{kategori}', [TefaKaryaController::class, 'destroyKategori'])->name('tefa-karya.kategori.destroy');
+
+Route::get('/kategori-karya', fn() => redirect()->route('admin.tefa-karya'));
 
 // 7. Job Center & BKK
 Route::get('/mitra-dudi', fn() => Inertia::render('Admin/ModuleScaffold', [

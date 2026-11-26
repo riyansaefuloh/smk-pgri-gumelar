@@ -34,9 +34,16 @@
   background: #a3a3a3; /* IDDS Neutral-400 */
 }
 
-/* IDDS Form Controls Refinements (Clean White, Crisp 6px Radius, High-Affordance #d0d5dd Stroke & Micro-Shadow) */
-div.ina-text-field__wrapper,
-div.ina-password-input__wrapper {
+/* ═══════════════════════════════════════════════════════════════════
+   IDDS Form Controls Refinements
+   - White bg, 6px radius, High-Affordance #d0d5dd stroke
+   - Preserves disabled, error, warning, success states from @idds/react
+   ═══════════════════════════════════════════════════════════════════ */
+
+div.ina-text-field__wrapper:not([class*="--disabled"]):not([class*="--status-error"]):not([class*="--status-warning"]):not([class*="--status-success"]),
+div.ina-password-input__wrapper:not([class*="--disabled"]):not([class*="--error"]),
+div.ina-text-area__wrapper:not([class*="--disabled"]):not([class*="--status-error"]):not([class*="--status-warning"]):not([class*="--status-success"]),
+button.ina-select-dropdown__trigger:not(:disabled):not([class*="--status-error"]):not([class*="--status-warning"]):not([class*="--status-success"]) {
   background-color: #ffffff !important;
   border-radius: 6px !important;
   border: 1px solid #d0d5dd !important;
@@ -44,56 +51,71 @@ div.ina-password-input__wrapper {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
 }
 
-div.ina-text-field__wrapper:hover,
-div.ina-password-input__wrapper:hover {
+/* Disabled: ikuti IDDS asli (bg tertiary abu-abu, bukan putih) */
+div.ina-text-field__wrapper[class*="--disabled"],
+div.ina-password-input__wrapper[class*="--disabled"],
+div.ina-text-area__wrapper[class*="--disabled"],
+button.ina-select-dropdown__trigger:disabled {
+  border-radius: 6px !important;
+}
+
+div.ina-text-field__wrapper:not([class*="--disabled"]):not([class*="--status-error"]):not([class*="--status-warning"]):not([class*="--status-success"]):hover,
+div.ina-password-input__wrapper:not([class*="--disabled"]):not([class*="--error"]):hover,
+div.ina-text-area__wrapper:not([class*="--disabled"]):not([class*="--status-error"]):not([class*="--status-warning"]):not([class*="--status-success"]):hover,
+button.ina-select-dropdown__trigger:not(:disabled):not([class*="--status-error"]):not([class*="--status-warning"]):not([class*="--status-success"]):hover {
   border-color: #0968F6 !important;
 }
 
-div.ina-text-field__wrapper:focus-within,
-div.ina-password-input__wrapper:focus-within,
-div.ina-password-input__wrapper.ina-password-input__wrapper--neutral:focus-within,
-div.ina-text-field__wrapper.ina-text-field__wrapper--status-neutral:focus-within {
+div.ina-text-field__wrapper:not([class*="--disabled"]):not([class*="--status-error"]):focus-within,
+div.ina-password-input__wrapper:not([class*="--disabled"]):not([class*="--error"]):focus-within,
+div.ina-text-area__wrapper:not([class*="--disabled"]):not([class*="--status-error"]):focus-within,
+button.ina-select-dropdown__trigger:not(:disabled):not([class*="--status-error"]):focus-visible {
   border-color: #0968F6 !important;
   box-shadow: 0 0 0 3px rgba(9, 104, 246, 0.15) !important;
   background-color: #ffffff !important;
 }
 
-/* Fix & Selaraskan IDDS Error State: Hilangkan Tuntas Inset Double-Border di Dalam Box Password & Input */
-div.ina-text-field__wrapper.ina-text-field__wrapper--status-error,
-div.ina-password-input__wrapper.ina-password-input__wrapper--error,
-div.ina-text-field__wrapper--status-error,
-div.ina-password-input__wrapper--error {
-  border: 1px solid #dc2626 !important;
-  border-color: #dc2626 !important;
+/* Error State: border merah #d50b0b, tanpa double-border */
+div.ina-text-field__wrapper[class*="--status-error"],
+div.ina-password-input__wrapper[class*="--error"],
+div.ina-text-area__wrapper[class*="--status-error"],
+button.ina-select-dropdown__trigger[class*="--status-error"] {
+  border: 1px solid #d50b0b !important;
+  border-radius: 6px !important;
   box-shadow: none !important;
+  background-color: #ffffff !important;
 }
 
-div.ina-text-field__wrapper.ina-text-field__wrapper--status-error:focus-within,
-div.ina-password-input__wrapper.ina-password-input__wrapper--error:focus-within,
-div.ina-text-field__wrapper--status-error:focus-within,
-div.ina-password-input__wrapper--error:focus-within {
-  border: 1px solid #dc2626 !important;
-  border-color: #dc2626 !important;
+div.ina-text-field__wrapper[class*="--status-error"]:focus-within,
+div.ina-password-input__wrapper[class*="--error"]:focus-within,
+div.ina-text-area__wrapper[class*="--status-error"]:focus-within {
+  border: 1px solid #d50b0b !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
+/* Label: IDDS content-primary, skala 14px agar selaras dengan input */
 .ina-text-field__label,
-.ina-password-input__label {
+.ina-password-input__label,
+.ina-text-area__label,
+.ina-select-dropdown__label {
   font-weight: 500 !important;
-  color: #333333 !important;
-  font-size: 13.5px !important;
+  color: #1f1f1f !important;
+  font-size: 14px !important;
   letter-spacing: 0.01em !important;
   margin-bottom: 6px !important;
 }
 
-/* Hilangkan line biru dalam (browser default focus outline) */
+/* Hilangkan browser default focus outline pada elemen input inner */
 .ina-text-field__input,
 .ina-password-input__input,
+.ina-text-area__input,
 .ina-text-field__input:focus,
 .ina-password-input__input:focus,
+.ina-text-area__input:focus,
 .ina-text-field__input:active,
-.ina-password-input__input:active {
+.ina-password-input__input:active,
+.ina-text-area__input:active {
   font-weight: 400 !important;
   color: #1f1f1f !important;
   font-size: 14px !important;
@@ -101,6 +123,22 @@ div.ina-password-input__wrapper--error:focus-within {
   outline: none !important;
   box-shadow: none !important;
   border: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SelectDropdown Trigger: font-size & hover alignment fix
+   - Trigger text inherits 16px by default → force 14px to match TextField
+   - Hover background goes gray → keep white for consistency
+   ═══════════════════════════════════════════════════════════════════ */
+
+.ina-select-dropdown__trigger,
+.ina-select-dropdown__trigger-input,
+.ina-select-dropdown__trigger-placeholder {
+  font-size: 14px !important;
+}
+
+button.ina-select-dropdown__trigger:not(:disabled):not([class*="--status-error"]):not([class*="--status-warning"]):not([class*="--status-success"]):hover {
+  background-color: #ffffff !important;
 }
 
 /* Inertia Page Loading Progress Bar (Gov Blue #0968F6) */

@@ -1,10 +1,11 @@
 import React from 'react';
-import { IconSearch, IconDatabaseOff } from '@tabler/icons-react';
+import { Button } from '@idds/react';
+import { IconSearch, IconDatabaseOff, IconPlus, IconLoader2 } from '@tabler/icons-react';
 import { Link } from '@inertiajs/react';
 
 /**
  * Reusable DataTable Component for Admin CMS
- * Disesuaikan dengan token warna semantik INA Digital Design System (IDDS) & Gov Blue #0968F6.
+ * Token warna semantik IDDS & Gov Blue #0968F6.
  */
 export default function DataTable({
     title,
@@ -14,32 +15,53 @@ export default function DataTable({
     searchPlaceholder = 'Cari data...',
     actionButton, // { label, href, onClick, icon }
     filterSlot,
-    columns = [], // [{ header: 'Nama', key: 'name', render: (row) => ... }]
+    columns = [], // [{ header, key, render, className }]
     data = [],
     pagination, // Laravel Pagination Object
     loading = false,
+    emptyTitle,
+    emptyDescription,
+    emptyMessage = 'Belum ada data yang tersedia',
+    emptyAction,
 }) {
+    // Format label pagination HTML entitas Laravel menjadi plain text aman (tanpa dangerouslySetInnerHTML)
+    const formatPaginationLabel = (rawLabel) => {
+        if (!rawLabel) {
+            return '';
+        }
+        if (/Previous/i.test(rawLabel)) {
+            return '‹ Sebelumnya';
+        }
+        if (/Next/i.test(rawLabel)) {
+            return 'Selanjutnya ›';
+        }
+        return rawLabel
+            .replace(/&laquo;/g, '‹')
+            .replace(/&raquo;/g, '›')
+            .trim();
+    };
+
     return (
-        <div className="bg-white rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+        <div className="bg-surface-primary rounded-xl border border-stroke-card shadow-xs overflow-hidden">
             {/* Table Header Controls */}
             {(title || actionButton || onSearchChange || filterSlot) && (
-                <div className="p-4 sm:p-5 border-b border-[#e2e8f0] flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="p-4 sm:p-5 border-b border-stroke-card flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         {title && (
-                            <h2 className="text-sm sm:text-base font-bold text-[#1f1f1f]">
+                            <h2 className="text-sm sm:text-base font-bold text-content-primary">
                                 {title}
                             </h2>
                         )}
                         {description && (
-                            <p className="text-xs text-[#525252] mt-0.5">{description}</p>
+                            <p className="text-xs text-content-secondary mt-0.5">{description}</p>
                         )}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2.5">
-                        {/* Search Input Bar */}
+                    <div className="flex flex-wrap items-center gap-2">
+                        {/* Search Input — 32px di mobile, 40px di desktop (selaras dengan SelectDropdown sm & Button md) */}
                         {onSearchChange && (
-                            <div className="relative min-w-[200px] sm:w-60">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#737373]">
+                            <div className="relative w-full sm:w-60">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-content-tertiary">
                                     <IconSearch size={15} />
                                 </div>
                                 <input
@@ -47,7 +69,8 @@ export default function DataTable({
                                     value={searchValue}
                                     onChange={(e) => onSearchChange(e.target.value)}
                                     placeholder={searchPlaceholder}
-                                    className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-[#d0d5dd] shadow-xs focus:border-[#0968f6] focus:ring-2 focus:ring-[#0968f6]/15 outline-none transition font-inter text-[#1f1f1f] bg-white"
+                                    aria-label={searchPlaceholder}
+                                    className="w-full h-8 sm:h-10 pl-8 pr-3 text-xs sm:text-sm rounded-md border border-stroke-input shadow-xs focus:border-brand-500 focus:ring-2 focus:ring-brand-500/15 outline-none transition text-content-primary bg-surface-primary"
                                 />
                             </div>
                         )}
@@ -55,25 +78,29 @@ export default function DataTable({
                         {/* Extra Filter Elements */}
                         {filterSlot}
 
-                        {/* Primary Action Button (Tambah Data dengan Gov Blue #0968F6) */}
+                        {/* Primary Action Button — IDDS Button md (32px mobile, 40px desktop) */}
                         {actionButton && (
                             actionButton.href ? (
-                                <Link
-                                    href={actionButton.href}
-                                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-[#0968f6] hover:bg-[#0049b8] transition shadow-xs font-inter"
-                                >
-                                    {actionButton.icon || <IconPlus size={15} />}
-                                    <span>{actionButton.label}</span>
+                                <Link href={actionButton.href}>
+                                    <Button
+                                        type="button"
+                                        hierarchy="primary"
+                                        size="md"
+                                        prefixIcon={actionButton.icon || <IconPlus size={15} />}
+                                    >
+                                        {actionButton.label}
+                                    </Button>
                                 </Link>
                             ) : (
-                                <button
+                                <Button
                                     type="button"
+                                    hierarchy="primary"
+                                    size="md"
+                                    prefixIcon={actionButton.icon || <IconPlus size={15} />}
                                     onClick={actionButton.onClick}
-                                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-[#0968f6] hover:bg-[#0049b8] transition shadow-xs font-inter"
                                 >
-                                    {actionButton.icon || <IconPlus size={15} />}
-                                    <span>{actionButton.label}</span>
-                                </button>
+                                    {actionButton.label}
+                                </Button>
                             )
                         )}
                     </div>
@@ -81,9 +108,17 @@ export default function DataTable({
             )}
 
             {/* Table Area */}
-            <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs text-[#525252] border-collapse font-inter">
-                    <thead className="bg-[#f2f4f7] text-[#1f1f1f] font-semibold uppercase text-[11px] tracking-wider border-b border-[#e2e8f0]">
+            <div className="overflow-x-auto relative">
+                {loading && (
+                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-surface-primary/70 backdrop-blur-[1px]">
+                        <div className="flex items-center gap-2 text-sm text-content-secondary">
+                            <IconLoader2 size={18} className="animate-spin text-brand-500" />
+                            <span>Memuat data...</span>
+                        </div>
+                    </div>
+                )}
+                <table className="w-full text-left text-xs text-content-secondary border-collapse">
+                    <thead className="bg-surface-secondary text-content-primary font-semibold uppercase text-xs tracking-wider border-b border-stroke-card">
                         <tr>
                             {columns.map((col, cIdx) => (
                                 <th
@@ -95,12 +130,12 @@ export default function DataTable({
                             ))}
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#e2e8f0]">
+                    <tbody className="divide-y divide-stroke-card">
                         {data.length > 0 ? (
                             data.map((row, rIdx) => (
                                 <tr
                                     key={row.id || rIdx}
-                                    className="h-[48px] hover:bg-[#fafcff] transition-colors"
+                                    className="h-[48px] hover:bg-brand-50 transition-colors"
                                 >
                                     {columns.map((col, cIdx) => (
                                         <td
@@ -115,11 +150,19 @@ export default function DataTable({
                         ) : (
                             <tr>
                                 <td colSpan={columns.length} className="py-12 text-center">
-                                    <div className="flex flex-col items-center justify-center text-[#737373] space-y-1.5">
-                                        <IconDatabaseOff size={34} stroke={1.5} className="text-[#a3a3a3]" />
-                                        <span className="text-xs font-medium text-[#737373]">
-                                            Belum ada data yang tersedia
-                                        </span>
+                                    <div className="flex flex-col items-center justify-center text-center px-4 space-y-2.5 max-w-md mx-auto">
+                                        <div className="w-11 h-11 rounded-full bg-surface-secondary border border-stroke-card flex items-center justify-center text-content-disabled">
+                                            <IconDatabaseOff size={22} stroke={1.6} />
+                                        </div>
+                                        {emptyTitle && (
+                                            <h3 className="text-sm font-semibold text-content-primary">
+                                                {emptyTitle}
+                                            </h3>
+                                        )}
+                                        <p className="text-xs text-content-secondary leading-relaxed">
+                                            {emptyDescription || emptyMessage}
+                                        </p>
+                                        {emptyAction && <div className="pt-1">{emptyAction}</div>}
                                     </div>
                                 </td>
                             </tr>
@@ -130,35 +173,42 @@ export default function DataTable({
 
             {/* Pagination Footer */}
             {pagination && pagination.links && (
-                <div className="p-3.5 sm:p-4 border-t border-[#e2e8f0] bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#737373] font-inter">
+                <div className="p-3.5 sm:p-4 border-t border-stroke-card bg-surface-primary flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-content-tertiary">
                     <div>
-                        Menampilkan <span className="font-semibold text-[#1f1f1f]">{pagination.from || 0}</span> sampai{' '}
-                        <span className="font-semibold text-[#1f1f1f]">{pagination.to || 0}</span> dari{' '}
-                        <span className="font-semibold text-[#1f1f1f]">{pagination.total || 0}</span> total data
+                        Menampilkan{' '}
+                        <span className="font-semibold text-content-primary">{pagination.from || 0}</span>{' '}
+                        sampai{' '}
+                        <span className="font-semibold text-content-primary">{pagination.to || 0}</span>{' '}
+                        dari{' '}
+                        <span className="font-semibold text-content-primary">{pagination.total || 0}</span>{' '}
+                        total data
                     </div>
 
                     <div className="flex items-center gap-1 overflow-x-auto">
                         {pagination.links.map((link, lIdx) => {
+                            const label = formatPaginationLabel(link.label);
                             if (!link.url) {
                                 return (
                                     <span
                                         key={lIdx}
-                                        dangerouslySetInnerHTML={{ __html: link.label }}
-                                        className="px-2.5 py-1 rounded-md text-[#a3a3a3] text-xs cursor-not-allowed select-none"
-                                    />
+                                        className="px-2.5 py-1 rounded-md text-content-disabled text-xs cursor-not-allowed select-none"
+                                    >
+                                        {label}
+                                    </span>
                                 );
                             }
                             return (
                                 <Link
                                     key={lIdx}
                                     href={link.url}
-                                    dangerouslySetInnerHTML={{ __html: link.label }}
                                     className={`px-2.5 py-1 rounded-md text-xs font-medium transition ${
                                         link.active
-                                            ? 'bg-[#0968f6] text-white font-bold shadow-xs'
-                                            : 'text-[#525252] hover:text-[#1f1f1f] hover:bg-[#f2f2f2] border border-[#e2e8f0]'
+                                            ? 'bg-brand-500 text-white font-bold shadow-xs'
+                                            : 'text-content-secondary hover:text-content-primary hover:bg-surface-tertiary border border-stroke-card'
                                     }`}
-                                />
+                                >
+                                    {label}
+                                </Link>
                             );
                         })}
                     </div>

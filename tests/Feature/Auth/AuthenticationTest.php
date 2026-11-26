@@ -3,15 +3,21 @@
 use App\Models\User;
 
 test('login screen can be rendered', function () {
-    $response = $this->get('/login');
+    $response = $this->get('/admin/login');
 
     $response->assertStatus(200);
+});
+
+test('legacy login route redirects to admin login', function () {
+    $response = $this->get('/login');
+
+    $response->assertRedirect(route('login', absolute: false));
 });
 
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    $response = $this->post('/login', [
+    $response = $this->post('/admin/login', [
         'email' => $user->email,
         'password' => 'password',
     ]);
@@ -23,7 +29,7 @@ test('users can authenticate using the login screen', function () {
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $this->post('/login', [
+    $this->post('/admin/login', [
         'email' => $user->email,
         'password' => 'wrong-password',
     ]);
