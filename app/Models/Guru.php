@@ -20,6 +20,7 @@ class Guru extends Model
     protected $fillable = [
         'nama_lengkap_gelar',
         'jabatan',
+        'mata_pelajaran',
         'foto_profil',
         'urutan_tampil',
     ];

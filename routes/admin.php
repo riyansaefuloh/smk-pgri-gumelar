@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BerandaController;
+use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\SarprasController;
+use App\Http\Controllers\Admin\SejarahSekolahController;
+use App\Http\Controllers\Admin\StrukturOrganisasiController;
 use App\Http\Controllers\Admin\TefaBengkelController;
 use App\Http\Controllers\Admin\TefaKaryaController;
-use App\Models\Beranda;
+use App\Http\Controllers\Admin\TentangSekolahController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -13,42 +18,41 @@ use Inertia\Inertia;
 */
 
 // 1. Profil Sekolah
-Route::get('/beranda', function () {
-    return Inertia::render('Admin/Beranda', [
-        'title'   => 'Beranda Website',
-        'beranda' => Beranda::first(),
-    ]);
-})->name('beranda');
+Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
+Route::put('/beranda/hero', [BerandaController::class, 'updateHero'])->name('beranda.hero.update');
+Route::put('/beranda/sambutan', [BerandaController::class, 'updateSambutan'])->name('beranda.sambutan.update');
+Route::put('/beranda/banner-bawah', [BerandaController::class, 'updateBannerBawah'])->name('beranda.banner-bawah.update');
 
-Route::get('/tentang-sekolah', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Tentang Sekolah',
-    'category'    => '1. Profil Sekolah',
-    'description' => 'Kelola profil sekolah, visi, misi, dan nilai keunggulan SMK PGRI Gumelar.',
-]))->name('tentang-sekolah');
+Route::get('/tentang-sekolah', [TentangSekolahController::class, 'index'])->name('tentang-sekolah');
+Route::put('/tentang-sekolah/profil', [TentangSekolahController::class, 'updateProfil'])->name('tentang-sekolah.profil.update');
+Route::put('/tentang-sekolah/statistik', [TentangSekolahController::class, 'updateStatistik'])->name('tentang-sekolah.statistik.update');
+Route::put('/tentang-sekolah/visi', [TentangSekolahController::class, 'updateVisi'])->name('tentang-sekolah.visi.update');
+Route::put('/tentang-sekolah/misi', [TentangSekolahController::class, 'updateMisi'])->name('tentang-sekolah.misi.update');
+Route::put('/tentang-sekolah/legalitas', [TentangSekolahController::class, 'updateLegalitas'])->name('tentang-sekolah.legalitas.update');
 
-Route::get('/sejarah-sekolah', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Sejarah Sekolah',
-    'category'    => '1. Profil Sekolah',
-    'description' => 'Kelola linimasa sejarah berdirinya dan perkembangan SMK PGRI Gumelar.',
-]))->name('sejarah-sekolah');
+Route::get('/sejarah-sekolah', [SejarahSekolahController::class, 'index'])->name('sejarah-sekolah');
+Route::put('/sejarah-sekolah/narasi', [SejarahSekolahController::class, 'updateNarasi'])->name('sejarah-sekolah.narasi.update');
+Route::put('/sejarah-sekolah/milestone', [SejarahSekolahController::class, 'updateMilestone'])->name('sejarah-sekolah.milestone.update');
 
-Route::get('/struktur-organisasi', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Struktur Organisasi',
-    'category'    => '1. Profil Sekolah',
-    'description' => 'Kelola bagan struktur organisasi kepemimpinan dan manajemen sekolah.',
-]))->name('struktur-organisasi');
+Route::get('/struktur-organisasi', [StrukturOrganisasiController::class, 'index'])->name('struktur-organisasi');
+Route::put('/struktur-organisasi', [StrukturOrganisasiController::class, 'update'])->name('struktur-organisasi.update');
 
-Route::get('/guru', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Direktori Guru & Staf',
-    'category'    => '1. Profil Sekolah',
-    'description' => 'Kelola data dewan guru, tenaga kependidikan (GTK), dan staf TU sekolah.',
-]))->name('guru');
+Route::get('/guru', [GuruController::class, 'index'])->name('guru');
+Route::put('/guru/header', [GuruController::class, 'updateHeader'])->name('guru.header.update');
+Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
+Route::put('/guru/{guru}', [GuruController::class, 'update'])->name('guru.update');
+Route::delete('/guru/{guru}', [GuruController::class, 'destroy'])->name('guru.destroy');
 
-Route::get('/sarpras', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Sarana & Prasarana',
-    'category'    => '1. Profil Sekolah',
-    'description' => 'Kelola inventaris fasilitas ruang kelas, bengkel otomotif, lab, dan sarpras pendukung.',
-]))->name('sarpras');
+Route::get('/sarpras', [SarprasController::class, 'index'])->name('sarpras');
+Route::put('/sarpras/header', [SarprasController::class, 'updateHeader'])->name('sarpras.header.update');
+Route::post('/sarpras', [SarprasController::class, 'store'])->name('sarpras.store');
+Route::put('/sarpras/{sarpras}', [SarprasController::class, 'update'])->name('sarpras.update');
+Route::delete('/sarpras/{sarpras}', [SarprasController::class, 'destroy'])->name('sarpras.destroy');
+Route::patch('/sarpras/{sarpras}/toggle', [SarprasController::class, 'toggleStatus'])->name('sarpras.toggle');
+
+Route::post('/sarpras/kategori', [SarprasController::class, 'storeKategori'])->name('sarpras.kategori.store');
+Route::put('/sarpras/kategori/{kategori}', [SarprasController::class, 'updateKategori'])->name('sarpras.kategori.update');
+Route::delete('/sarpras/kategori/{kategori}', [SarprasController::class, 'destroyKategori'])->name('sarpras.kategori.destroy');
 
 // 2. SPMB (PPDB Online)
 Route::get('/spmb-halaman', fn() => Inertia::render('Admin/ModuleScaffold', [
