@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\StrukturOrganisasiController;
 use App\Http\Controllers\Admin\TefaBengkelController;
 use App\Http\Controllers\Admin\TefaKaryaController;
 use App\Http\Controllers\Admin\TentangSekolahController;
+use App\Http\Controllers\Admin\SpmbGelombangController;
+use App\Http\Controllers\Admin\SpmbHalamanController;
+use App\Http\Controllers\Admin\SpmbPendaftarController;
+use App\Models\Beranda;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -55,23 +59,24 @@ Route::put('/sarpras/kategori/{kategori}', [SarprasController::class, 'updateKat
 Route::delete('/sarpras/kategori/{kategori}', [SarprasController::class, 'destroyKategori'])->name('sarpras.kategori.destroy');
 
 // 2. SPMB (PPDB Online)
-Route::get('/spmb-halaman', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Pengaturan & Brosur SPMB',
-    'category'    => '2. SPMB (PPDB Online)',
-    'description' => 'Kelola informasi jalur masuk, syarat pendaftaran, dan unduhan brosur PPDB.',
-]))->name('spmb-halaman');
+// 2.1 Pengaturan & Brosur SPMB (Controller Aktif)
+Route::get('/spmb-halaman', [SpmbHalamanController::class, 'index'])->name('spmb-halaman.index');
+Route::post('/spmb-halaman/hero', [SpmbHalamanController::class, 'updateHero'])->name('spmb-halaman.hero');
+Route::put('/spmb-halaman/biaya', [SpmbHalamanController::class, 'updateBiaya'])->name('spmb-halaman.biaya');
+Route::put('/spmb-halaman/alur', [SpmbHalamanController::class, 'updateAlur'])->name('spmb-halaman.alur');
+Route::post('/spmb-halaman/banner', [SpmbHalamanController::class, 'updateBanner'])->name('spmb-halaman.banner');
+Route::post('/spmb-halaman', [SpmbHalamanController::class, 'update'])->name('spmb-halaman.update');
 
-Route::get('/spmb-gelombang', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Jadwal Gelombang',
-    'category'    => '2. SPMB (PPDB Online)',
-    'description' => 'Kelola jadwal gelombang pendaftaran, kuota penerimaan, dan status aktif.',
-]))->name('spmb-gelombang');
+// 2.2 Master Jadwal Gelombang (Controller Aktif)
+Route::resource('/spmb-gelombang', SpmbGelombangController::class)->except(['create', 'show', 'edit']);
+Route::patch('/spmb-gelombang/{spmbGelombang}/toggle', [SpmbGelombangController::class, 'toggleStatus'])->name('spmb-gelombang.toggle');
 
-Route::get('/spmb-pendaftar', fn() => Inertia::render('Admin/ModuleScaffold', [
-    'title'       => 'Data Pendaftar Siswa',
-    'category'    => '2. SPMB (PPDB Online)',
-    'description' => 'Kelola verifikasi data calon siswa baru yang mendaftar secara online.',
-]))->name('spmb-pendaftar');
+// 2.3 Data Pendaftar Siswa (Controller Aktif)
+Route::get('/spmb-pendaftar', [SpmbPendaftarController::class, 'index'])->name('spmb-pendaftar');
+Route::get('/spmb-pendaftar/export', [SpmbPendaftarController::class, 'exportExcel'])->name('spmb-pendaftar.export');
+Route::patch('/spmb-pendaftar/{spmbPendaftar}/status', [SpmbPendaftarController::class, 'updateStatus'])->name('spmb-pendaftar.status');
+Route::delete('/spmb-pendaftar/{spmbPendaftar}', [SpmbPendaftarController::class, 'destroy'])->name('spmb-pendaftar.destroy');
+Route::get('/spmb-pendaftar/{spmbPendaftar}/pdf', [SpmbPendaftarController::class, 'downloadPdf'])->name('spmb-pendaftar.pdf');
 
 // 3. Academic Hub (Program Keahlian, Berita, Kalender, Unduhan, Mapel Pilihan, Ekstrakurikuler, Kokurikuler & OSIS)
 Route::get('/program-keahlian', fn() => Inertia::render('Admin/ModuleScaffold', [

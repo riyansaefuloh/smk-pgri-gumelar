@@ -32,9 +32,9 @@ class SpmbGelombang extends Model
     protected function casts(): array
     {
         return [
-        'tanggal_buka' => 'date',
-        'tanggal_tutup' => 'date',
-        'status_gelombang_buka' => 'boolean',
+            'tanggal_buka'          => 'date',
+            'tanggal_tutup'         => 'date',
+            'status_gelombang_buka' => 'boolean',
         ];
     }
 

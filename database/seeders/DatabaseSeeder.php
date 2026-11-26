@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             TentangSekolahSeeder::class,
             ProgramKeahlianSeeder::class,
             SpmbHalamanSeeder::class,
+            SpmbGelombangSeeder::class,
+            SpmbPendaftarSeeder::class,
             KontakSekolahSeeder::class,
             KategoriSeeder::class,
         ]);
