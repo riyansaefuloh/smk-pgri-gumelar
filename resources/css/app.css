@@ -156,3 +156,9 @@ button.ina-select-dropdown__trigger:not(:disabled):not([class*="--status-error"]
   border-top-color: #0968F6 !important;
   border-left-color: #0968F6 !important;
 }
+
+/* Sembunyikan ikon password reveal bawaan Microsoft Edge agar tidak ganda dengan PasswordInput @idds/react */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
