@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\SpmbController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -13,6 +14,15 @@ use Inertia\Inertia;
 
 // Rute Awal Publik: Beranda Resmi SMK PGRI Gumelar
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Modul SPMB (PPDB Online) Publik
+Route::prefix('spmb')->name('spmb.')->group(function () {
+    Route::get('/', [SpmbController::class, 'index'])->name('index');
+    Route::get('/daftar', [SpmbController::class, 'daftar'])->name('daftar');
+    Route::post('/daftar', [SpmbController::class, 'store'])->name('store');
+    Route::get('/sukses/{nomor_registrasi}', [SpmbController::class, 'sukses'])->name('sukses');
+    Route::get('/bukti/{nomor_registrasi}', [SpmbController::class, 'cetakBukti'])->name('cetak-bukti');
+});
 
 /*
 |--------------------------------------------------------------------------
