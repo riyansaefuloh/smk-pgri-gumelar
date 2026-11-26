@@ -29,9 +29,15 @@ class TentangSekolahSeeder extends Seeder
                 'jumlah_siswa'         => '100+',
                 'jumlah_guru_staf'     => '15',
                 'lama_tahun_beroperasi'=> '12+',
-                'judul_legalitas'      => 'Awal Operasional & Izin Resmi Sekolah',
-                'keterangan_legalitas' => 'SMK PGRI Gumelar menyelenggarakan pendidikan kejuruan berdasarkan izin operasional resmi SK Nomor 422/217 Tahun 2014 di bawah naungan YPLP DM PGRI JT Cabang Banyumas.',
-                'foto_legalitas'       => '/images/dokumen-legalitas.jpg',
+                'judul_legalitas'       => 'Awal Operasional & Izin Resmi Sekolah',
+                'keterangan_legalitas'  => 'SMK PGRI Gumelar menyelenggarakan pendidikan kejuruan berdasarkan izin operasional resmi SK Nomor 422/217 Tahun 2014 di bawah naungan YPLP DM PGRI JT Cabang Banyumas.',
+                'nama_sekolah'          => 'SMK PGRI Gumelar',
+                'npsn'                  => '',
+                'sk_izin_operasional'   => '422/217 Tahun 2014',
+                'jenjang_status'        => 'SMK / Swasta',
+                'yayasan_penyelenggara' => 'YPLP DM PGRI JT Cabang Banyumas',
+                'akreditasi'            => '',
+                'foto_legalitas'        => '/images/dokumen-legalitas.jpg',
             ]
         );
     }

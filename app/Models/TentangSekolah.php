@@ -29,6 +29,12 @@ class TentangSekolah extends Model
         'lama_tahun_beroperasi',
         'judul_legalitas',
         'keterangan_legalitas',
+        'nama_sekolah',
+        'npsn',
+        'sk_izin_operasional',
+        'jenjang_status',
+        'yayasan_penyelenggara',
+        'akreditasi',
         'foto_legalitas',
     ];
 
