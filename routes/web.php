@@ -15,6 +15,9 @@ use Inertia\Inertia;
 // Rute Awal Publik: Beranda Resmi SMK PGRI Gumelar
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Rute Profil Sekolah
+Route::get('/profil/tentang', [HomeController::class, 'tentang'])->name('profil.tentang');
+
 // Modul SPMB (PPDB Online) Publik
 Route::prefix('spmb')->name('spmb.')->group(function () {
     Route::get('/', [SpmbController::class, 'index'])->name('index');
